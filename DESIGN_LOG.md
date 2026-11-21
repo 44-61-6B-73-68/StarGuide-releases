@@ -86,3 +86,19 @@ Changed: canvas clips out the hero copy block (with padding), so lines pass behi
 
 ## Round 24: polish and robustness
 Changed: shimmer placeholders and fade-in for lazy images, press states on buttons/chips/tabs, lining numerals (Cormorant re-subset with lnum), CSS reduced-motion rules for the new pieces, minimum slider height on very short windows, width/height on all hero images, copy tightened. Audit: 0 external requests, 27 requests (about 616 KB including idle prefetch of the 8 full-size style images; about 280 KB before it), no duplicate ids, no heading level skips, one main/nav/footer landmark, every button and link named.
+
+## Rounds 25-28: cold review passes
+Art-director pass 1: step cards still used a near-black photo and a generic diagram. Fixed: the drop zone and the "stars recognised" card now use the brightened preview, with the constellation line drawn over it. Verified reduced-motion CSS by injecting its rules (hero visible, no animations, sheen off, reveals visible) and the JS path (static sky, slider at 50%). Checked a very wide and short window (1600x520): no horizontal scroll, slider keeps a 340 px minimum height.
+
+## Rounds 29-30: final review
+Checked 360 / 768 / 1280 / 1920 again, console clean, zero external requests, Download href unchanged (Windows card and closing call-to-action). Nothing pushed or published.
+
+## File layout and preview (README note)
+- `index.html`: the whole page (semantic HTML, no build step).
+- `css/style.css`: design tokens (colour, radius, spacing, shadow, easing) at the top, then components, then responsive and reduced-motion rules.
+- `js/main.js`: vanilla JS only: nav, scroll reveal, before/after slider with style chips and brightening toggle, feature tabs, FAQ animation, lightbox with zoom, count-up numbers, OS-aware download text, constellation canvas. Everything degrades without JS.
+- `img/`: WebP images rendered by the app from one phone photo (`*-sm.webp` are 560 px thumbnails), `original-bright.webp` (labelled brightened preview), `original.webp` (as shot), `app-*.webp` real window screenshots (`-full` for the zoom view), `og.jpg` for social previews.
+- `fonts/`: Cormorant Garamond and Inter (OFL), subset to Latin, WOFF.
+- `favicon.svg`: star mark.
+- Preview locally: from this folder run `python -m http.server 8765 --bind 127.0.0.1` and open http://127.0.0.1:8765/ (opening index.html from disk also works for a quick look, but use the server for accurate loading).
+- Keep the Download button href as `https://github.com/44-61-6B-73-68/StarGuide-releases/releases/latest`.
