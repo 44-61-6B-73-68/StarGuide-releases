@@ -65,6 +65,7 @@ $$(".step,.install").forEach(function(c){
     handle.setAttribute("aria-valuetext",Math.round(pos)+"% your photo, "+Math.round(100-pos)+"% "+names[cur]);
   }
   var cur="atlas";
+  var glows={atlas:"232,203,146",neon:"80,220,255",minimal:"210,220,240",blueprint:"60,110,255",watercolor:"240,150,190",educational:"130,170,255"};
   function fromEvent(e){var r=cmp.getBoundingClientRect();set((e.clientX-r.left)/r.width*100)}
   cmp.addEventListener("pointerdown",function(e){
     if(e.button>0)return;dragging=true;cmp.classList.add("is-drag");stopAuto();
@@ -95,6 +96,7 @@ $$(".step,.install").forEach(function(c){
     if(id===cur)return;cur=id;
     chips.forEach(function(c){var on=c.dataset.style===id;c.classList.toggle("is-on",on);c.setAttribute("aria-pressed",on)});
     tag.textContent=names[id];
+    var st=$("#stage");if(st)st.style.setProperty("--glow",glows[id]);
     var src="img/"+id+".webp";
     back.onload=function(){back.classList.add("is-on");front.classList.remove("is-on");back.alt=alts[id];back.removeAttribute("aria-hidden");front.alt="";front.setAttribute("aria-hidden","true");var t=front;front=back;back=t;back.onload=null};
     back.src=src;
@@ -104,7 +106,8 @@ $$(".step,.install").forEach(function(c){
   chips.forEach(function(c){c.addEventListener("click",function(){stopAuto();show(c.dataset.style)})});
   /* warm the cache when the browser is idle */
   var idle=window.requestIdleCallback||function(f){setTimeout(f,1800)};
-  idle(function(){Object.keys(names).forEach(function(k){if(k!=="atlas"){var i=new Image();i.src="img/"+k+".webp"}})});
+  var sd=navigator.connection&&navigator.connection.saveData;
+  if(!sd&&window.innerWidth>760)idle(function(){Object.keys(names).forEach(function(k){if(k!=="atlas"){var i=new Image();i.src="img/"+k+".webp"}})});
   /* gentle intro sweep, cancelled by any interaction */
   var auto=null;
   function stopAuto(){cmp.classList.add("is-touched");if(auto){cancelAnimationFrame(auto);auto=null}}
@@ -129,7 +132,9 @@ $$(".step,.install").forEach(function(c){
       var on=x===t;x.setAttribute("aria-selected",on);x.tabIndex=on?0:-1;
       var p=document.getElementById(x.getAttribute("aria-controls"));if(p)p.hidden=!on;
     });
-    if(focus)t.focus();
+    var box=t.parentElement;
+    if(box.scrollWidth>box.clientWidth+4){box.scrollTo({left:t.offsetLeft-(box.clientWidth-t.offsetWidth)/2,behavior:reduce?"auto":"smooth"})}
+    if(focus)t.focus({preventScroll:true});
   }
   tabs.forEach(function(t,i){
     t.addEventListener("click",function(){pick(t)});
