@@ -48,3 +48,11 @@ Changed: compact mobile captions. Verified: no console errors, no external reque
 - The source photo is dark, so the "before" half looks nearly black; a brighter example photo would show the contrast better.
 - No real-device testing (iOS Safari / Android Chrome) yet; backdrop-filter and dialog fallbacks unchecked.
 - Slider glow transition between styles is instant, not eased.
+
+## Round 11: convincing before/after + real constellations
+Critique: the raw photo is nearly black, so the slider's "before" half proved nothing; the starfield was generic dots.
+Changed: "Your photo" side is now a brightened preview (glow subtracted, gentle curve, from the original TIFF), clearly labelled "brightened"; the label is a button that toggles to the photo as shot. Hero background is now Scorpius, Sagittarius and Ophiuchus drawn as star-to-star lines that draw themselves and glow as the pointer nears (plus a periodic self-draw for touch screens); still pauses off-screen, static under reduced motion.
+
+## Round 12: real app screenshots, poster/cinematic, fonts
+Critique: no proof of the actual interface; Poster and Cinematic missing from the slider; fonts heavy; mobile nav dead without JS.
+Changed: new "Inside the app" section with two real StarGuide window screenshots (Neon / Atlas; file name blanked, caption notes Auto-enhance is on). Cinematic and Poster join the slider as contained cards on a matching background. Fonts subset to Latin and converted to WOFF (about 430 KB to 120 KB; no brotli available for woff2). Slider glow colour now eases between styles (registered CSS properties). No-JS mobile nav shows the links as a second row.

@@ -16,9 +16,9 @@
 <meta property="og:image:alt" content="A night-sky photo turned into a gold constellation chart by StarGuide">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="preload" href="fonts/cormorant-garamond-latin-500-normal.ttf" as="font" type="font/ttf" crossorigin>
-<link rel="preload" href="fonts/inter-latin-400-normal.ttf" as="font" type="font/ttf" crossorigin>
-<link rel="preload" href="img/original.webp" as="image" type="image/webp">
+<link rel="preload" href="fonts/cormorant-garamond-latin-500-normal.woff" as="font" type="font/woff" crossorigin>
+<link rel="preload" href="fonts/inter-latin-400-normal.woff" as="font" type="font/woff" crossorigin>
+<link rel="preload" href="img/original-bright.webp" as="image" type="image/webp">
 <link rel="stylesheet" href="css/style.css">
 <script>document.documentElement.className="js"</script>
 </head>
@@ -35,6 +35,7 @@
     <nav class="nav__links" id="menu" aria-label="Main">
       <a href="#how">How it works</a>
       <a href="#features">Features</a>
+      <a href="#app">The app</a>
       <a href="#styles">Styles</a>
       <a href="#faq">FAQ</a>
     </nav>
@@ -60,12 +61,12 @@
 
     <div class="stage" id="stage">
       <div class="cmp" id="cmp" style="--pos:50%">
-        <img class="cmp__base" src="img/original.webp" width="1350" height="1800" alt="Original night-sky photo of the Milky Way core, taken on a phone" fetchpriority="high">
+        <img class="cmp__base" id="base" src="img/original-bright.webp" width="1100" height="1467" alt="Your night-sky photo of the Milky Way core, taken on a phone, with the brightness lifted for this preview" fetchpriority="high">
         <div class="cmp__top">
           <img class="cmp__img is-on" id="topA" src="img/atlas.webp" width="1391" height="1800" alt="The same photo as a gold Celestial Atlas chart with constellations and objects labelled">
           <img class="cmp__img" id="topB" src="img/atlas.webp" alt="" aria-hidden="true">
         </div>
-        <span class="cmp__tag cmp__tag--l">Your photo</span>
+        <button type="button" class="cmp__tag cmp__tag--l cmp__tog" id="tagL" aria-pressed="true" aria-label="Brightened for preview. Press to show the photo as shot.">Your photo <i>brightened</i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7l-4 5 4 5M17 7l4 5-4 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         <span class="cmp__tag cmp__tag--r" id="tagR">Celestial Atlas</span>
         <span class="cmp__hint" aria-hidden="true">Drag to compare</span>
         <div class="cmp__handle" id="handle" role="slider" tabindex="0" aria-label="Compare your photo with the StarGuide result" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-valuetext="50% your photo">
@@ -78,9 +79,11 @@
         <button type="button" class="chip" data-style="minimal" aria-pressed="false">Minimal</button>
         <button type="button" class="chip" data-style="blueprint" aria-pressed="false">Blueprint</button>
         <button type="button" class="chip" data-style="watercolor" aria-pressed="false">Watercolor</button>
+        <button type="button" class="chip" data-style="cinematic" aria-pressed="false">Cinematic</button>
+        <button type="button" class="chip" data-style="poster" aria-pressed="false">Poster</button>
         <button type="button" class="chip" data-style="educational" aria-pressed="false">Educational</button>
       </div>
-      <p class="caption">961 stars matched in this phone photo of Sagittarius and Scorpius.</p>
+      <p class="caption">961 stars matched in this phone photo. The raw file is far darker: press “brightened” to see it as shot.</p>
     </div>
   </div>
   <a class="scrollcue" href="#how" aria-label="Scroll to how it works"><i></i></a>
@@ -211,6 +214,28 @@
           <ul class="ticks"><li>Print-ready PDF and vector SVG</li><li>16-bit TIFF for editing</li><li>Layered output</li></ul></div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- APP -->
+<section class="sec" id="app">
+  <div class="wrap">
+    <header class="sec__head reveal">
+      <p class="eyebrow">Inside the app</p>
+      <h2>A calm, <em>focused workspace.</em></h2>
+      <p class="sub">Pick a style on the left, fine-tune on the right, export from the toolbar. Real screenshots of StarGuide on Windows.</p>
+    </header>
+    <div class="appshot reveal" id="appshot">
+      <div class="appshot__bar" role="group" aria-label="Choose a screenshot">
+        <button type="button" class="chip is-on" data-shot="neon" aria-pressed="true">Neon Constellations</button>
+        <button type="button" class="chip" data-shot="atlas" aria-pressed="false">Celestial Atlas</button>
+      </div>
+      <div class="appshot__frame">
+        <img class="appshot__img is-on" id="shotA" src="img/app-neon.webp" width="1600" height="1000" loading="lazy" alt="The StarGuide window: a style gallery on the left, the photo with glowing neon constellation lines in the centre, and photo controls on the right">
+        <img class="appshot__img" id="shotB" src="img/app-atlas.webp" width="1600" height="1000" loading="lazy" alt="" aria-hidden="true">
+      </div>
+      <p class="caption">Screenshots of the Windows app with the optional Auto-enhance switched on for this photo.</p>
     </div>
   </div>
 </section>
