@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>StarGuide – know what you photographed</title>
+<meta name="description" content="StarGuide recognises the stars in your night-sky photo, offline, and turns it into beautiful annotated artwork. Free for Windows.">
+<meta property="og:title" content="StarGuide – know what you photographed">
+<meta property="og:description" content="Offline star recognition and constellation artwork for night-sky photos. Free for Windows.">
+<meta property="og:image" content="img/atlas.jpg">
+<meta name="theme-color" content="#070a14">
+<style>
+:root{--bg:#070a14;--panel:#0e1426;--line:#1f2a48;--text:#e8ecf7;--muted:#9aa6c4;--gold:#e3c68e;--accent:#7fd8ff}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+a{color:var(--accent)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+nav{display:flex;justify-content:space-between;align-items:center;padding:18px 0}
+nav b{font-size:1.15rem;letter-spacing:.04em}
+nav b span{color:var(--gold)}
+nav a{color:var(--muted);text-decoration:none;margin-left:20px;font-size:.95rem}
+nav a:hover{color:var(--text)}
+.hero{display:grid;grid-template-columns:1.05fr 1fr;gap:40px;align-items:center;padding:28px 0 56px}
+h1{font-size:clamp(2rem,5vw,3.2rem);line-height:1.1;margin:0 0 16px}
+h1 em{font-style:normal;color:var(--gold)}
+.lead{color:var(--muted);font-size:1.12rem;margin:0 0 26px}
+.btn{display:inline-block;background:var(--gold);color:#1a1405;font-weight:700;padding:13px 24px;border-radius:10px;text-decoration:none}
+.btn:hover{filter:brightness(1.08)}
+.btn.ghost{background:transparent;color:var(--text);border:1px solid var(--line);margin-left:10px;font-weight:600}
+.note{color:var(--muted);font-size:.88rem;margin-top:12px}
+.ba{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#000;aspect-ratio:3/4;user-select:none;touch-action:pan-y}
+.ba img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.ba input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
+.ba .bar{position:absolute;top:0;bottom:0;left:50%;width:2px;background:var(--gold);pointer-events:none}
+.ba .bar::after{content:"\21C6";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:38px;height:38px;border-radius:50%;background:var(--gold);color:#1a1405;display:grid;place-items:center;font-weight:700}
+.tag{position:absolute;bottom:12px;padding:3px 10px;border-radius:99px;background:rgba(7,10,20,.75);font-size:.8rem;pointer-events:none}
+.tag.l{left:12px}.tag.r{right:12px}
+section{padding:54px 0;border-top:1px solid var(--line)}
+h2{font-size:1.7rem;margin:0 0 8px}
+.sub{color:var(--muted);margin:0 0 28px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px}
+.card h3{margin:0 0 6px;font-size:1.05rem;color:var(--gold)}
+.card p{margin:0;color:var(--muted);font-size:.95rem}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.gallery figure{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.gallery img{width:100%;display:block;aspect-ratio:3/4;object-fit:cover}
+.gallery figcaption{padding:10px 14px;font-size:.9rem;color:var(--muted)}
+.dl{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:28px;text-align:center}
+details{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 18px;margin-bottom:10px}
+summary{cursor:pointer;font-weight:600}
+details p{color:var(--muted);margin:10px 0 0}
+footer{padding:30px 0 50px;color:var(--muted);font-size:.88rem;border-top:1px solid var(--line)}
+@media(max-width:820px){.hero{grid-template-columns:1fr}.btn.ghost{margin:10px 0 0}}
+@media(max-width:520px){nav{flex-wrap:wrap;gap:6px}nav a{margin:0 14px 0 0;font-size:.9rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav><b>Star<span>Guide</span></b><div><a href="#styles">Styles</a><a href="#features">Features</a><a href="#download">Download</a><a href="#faq">FAQ</a></div></nav>
+
+<header class="hero">
+  <div>
+    <h1>Know exactly <em>what you photographed</em>.</h1>
+    <p class="lead">Drop in a night-sky photo. StarGuide recognises the stars <b>offline</b> and turns your picture into annotated constellation artwork you can print, share or keep. Free for Windows.</p>
+    <a class="btn" href="#download">Download free</a><a class="btn ghost" href="#styles">See the styles</a>
+    <p class="note">Works without internet. Your photos never leave your computer.</p>
+  </div>
+  <div>
+    <div class="ba" aria-label="Before and after comparison of a night-sky photo">
+      <img src="img/atlas.jpg" alt="The same photo as a gold Celestial Atlas star chart with constellations labelled">
+      <img id="top" src="img/original.jpg" alt="Original night-sky photo of the Milky Way core">
+      <div class="bar" id="bar"></div>
+      <span class="tag l">Your photo</span><span class="tag r">StarGuide</span>
+      <input type="range" min="0" max="100" value="50" id="rng" aria-label="Drag to compare">
+    </div>
+    <p class="note" style="text-align:center">Drag to compare. Phone photo of Sagittarius and Scorpius.</p>
+  </div>
+</header>
+
+<section id="styles">
+  <h2>Pick a look</h2>
+  <p class="sub">Same stars, different mood. Eight ready-made styles, all adjustable.</p>
+  <div class="gallery">
+    <figure><img loading="lazy" src="img/atlas.jpg" alt="Celestial Atlas style"><figcaption><b>Celestial Atlas</b> – vintage gold star chart</figcaption></figure>
+    <figure><img loading="lazy" src="img/neon.jpg" alt="Neon Constellations style"><figcaption><b>Neon Constellations</b> – glowing lines</figcaption></figure>
+    <figure><img loading="lazy" src="img/minimal.jpg" alt="Minimal Ink style"><figcaption><b>Minimal Ink</b> – quiet, thin lines</figcaption></figure>
+    <figure><img loading="lazy" src="img/educational.jpg" alt="Clean Educational style"><figcaption><b>Clean Educational</b> – made for learning</figcaption></figure>
+  </div>
+</section>
+
+<section id="features">
+  <h2>What it does</h2>
+  <p class="sub">Built for people who photograph the night sky, from a phone to a tracked camera.</p>
+  <div class="grid">
+    <div class="card"><h3>Recognises your stars</h3><p>Offline plate solving finds exactly where your camera was pointing. No upload, no account.</p></div>
+    <div class="card"><h3>Labels everything</h3><p>Constellations, bright stars, Messier and NGC objects, planets, the Moon and more, placed so labels do not collide.</p></div>
+    <div class="card"><h3>Looks beautiful</h3><p>Eight art styles and full control over colours, fonts, lines and frames.</p></div>
+    <div class="card"><h3>Improves the photo</h3><p>Optional clean-up, stretch, colour calibration and detail tools. Your photo stays as shot unless you choose otherwise.</p></div>
+    <div class="card"><h3>Stacks and batches</h3><p>Combine exposures for cleaner results, or process a whole folder in one go.</p></div>
+    <div class="card"><h3>Export anything</h3><p>PNG, JPG, 16-bit TIFF, SVG, print-ready PDF, or layered files for your editor.</p></div>
+  </div>
+</section>
+
+<section id="download">
+  <div class="dl">
+    <h2>Download StarGuide</h2>
+    <p class="sub">Free. Windows 10 / 11, 64-bit.</p>
+    <a class="btn" href="https://github.com/44-61-6B-73-68/StarGuide-releases/releases/latest">Download for Windows</a>
+    <p class="note">Unzip the folder anywhere and run <b>StarGuide.exe</b>. About 430 MB.<br>Mac and Linux versions are planned.</p>
+  </div>
+</section>
+
+<section id="faq">
+  <h2>Questions</h2>
+  <details><summary>Windows says "unknown publisher". Is it safe?</summary><p>StarGuide is a new independent app and is not code-signed yet, so Windows SmartScreen shows a warning. Click <b>More info</b>, then <b>Run anyway</b>.</p></details>
+  <details><summary>Does it need the internet?</summary><p>No. Star recognition, catalogues and rendering all run on your computer. Only optional extras (online solving, satellite data, update check) use the internet, and only when you switch them on.</p></details>
+  <details><summary>What photos work?</summary><p>JPG, PNG, TIFF, HEIC and most camera RAW files, from phone shots to wide-field astrophotos.</p></details>
+  <details><summary>Is it really free?</summary><p>Yes. This version is free to use and keep. Future versions may add paid editions, but the copy you download stays yours.</p></details>
+</section>
+</div>
+
+<footer><div class="wrap">StarGuide · made by Daksh · Free Edition. Star data from HYG, OpenNGC, Gaia (ESA), Hipparcos and NASA/JPL; constellation data from Stellarium; plate solving with tetra3 (ESA).</div></footer>
+
+<script>
+(function(){
+  var r=document.getElementById('rng'),t=document.getElementById('top'),b=document.getElementById('bar');
+  function set(v){t.style.clipPath='inset(0 '+(100-v)+'% 0 0)';b.style.left=v+'%';}
+  r.addEventListener('input',function(){set(r.value)});set(50);
+})();
+</script>
+</body>
+</html>
