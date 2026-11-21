@@ -1,134 +1,300 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>StarGuide – know what you photographed</title>
-<meta name="description" content="StarGuide recognises the stars in your night-sky photo, offline, and turns it into beautiful annotated artwork. Free for Windows.">
+<meta name="description" content="StarGuide recognises the stars in your night-sky photo, offline, and turns it into beautiful annotated constellation artwork. Free for Windows.">
+<meta name="theme-color" content="#05070f">
+<meta name="color-scheme" content="dark">
+<meta property="og:type" content="website">
 <meta property="og:title" content="StarGuide – know what you photographed">
 <meta property="og:description" content="Offline star recognition and constellation artwork for night-sky photos. Free for Windows.">
-<meta property="og:image" content="img/atlas.jpg">
-<meta name="theme-color" content="#070a14">
-<style>
-:root{--bg:#070a14;--panel:#0e1426;--line:#1f2a48;--text:#e8ecf7;--muted:#9aa6c4;--gold:#e3c68e;--accent:#7fd8ff}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
-a{color:var(--accent)}
-.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
-nav{display:flex;justify-content:space-between;align-items:center;padding:18px 0}
-nav b{font-size:1.15rem;letter-spacing:.04em}
-nav b span{color:var(--gold)}
-nav a{color:var(--muted);text-decoration:none;margin-left:20px;font-size:.95rem}
-nav a:hover{color:var(--text)}
-.hero{display:grid;grid-template-columns:1.05fr 1fr;gap:40px;align-items:center;padding:28px 0 56px}
-h1{font-size:clamp(2rem,5vw,3.2rem);line-height:1.1;margin:0 0 16px}
-h1 em{font-style:normal;color:var(--gold)}
-.lead{color:var(--muted);font-size:1.12rem;margin:0 0 26px}
-.btn{display:inline-block;background:var(--gold);color:#1a1405;font-weight:700;padding:13px 24px;border-radius:10px;text-decoration:none}
-.btn:hover{filter:brightness(1.08)}
-.btn.ghost{background:transparent;color:var(--text);border:1px solid var(--line);margin-left:10px;font-weight:600}
-.note{color:var(--muted);font-size:.88rem;margin-top:12px}
-.ba{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#000;aspect-ratio:3/4;user-select:none;touch-action:pan-y}
-.ba img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
-.ba input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
-.ba .bar{position:absolute;top:0;bottom:0;left:50%;width:2px;background:var(--gold);pointer-events:none}
-.ba .bar::after{content:"\21C6";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:38px;height:38px;border-radius:50%;background:var(--gold);color:#1a1405;display:grid;place-items:center;font-weight:700}
-.tag{position:absolute;bottom:12px;padding:3px 10px;border-radius:99px;background:rgba(7,10,20,.75);font-size:.8rem;pointer-events:none}
-.tag.l{left:12px}.tag.r{right:12px}
-section{padding:54px 0;border-top:1px solid var(--line)}
-h2{font-size:1.7rem;margin:0 0 8px}
-.sub{color:var(--muted);margin:0 0 28px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px}
-.card h3{margin:0 0 6px;font-size:1.05rem;color:var(--gold)}
-.card p{margin:0;color:var(--muted);font-size:.95rem}
-.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
-.gallery figure{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}
-.gallery img{width:100%;display:block;aspect-ratio:3/4;object-fit:cover}
-.gallery figcaption{padding:10px 14px;font-size:.9rem;color:var(--muted)}
-.dl{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:28px;text-align:center}
-details{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 18px;margin-bottom:10px}
-summary{cursor:pointer;font-weight:600}
-details p{color:var(--muted);margin:10px 0 0}
-footer{padding:30px 0 50px;color:var(--muted);font-size:.88rem;border-top:1px solid var(--line)}
-@media(max-width:820px){.hero{grid-template-columns:1fr}.btn.ghost{margin:10px 0 0}}
-@media(max-width:520px){nav{flex-wrap:wrap;gap:6px}nav a{margin:0 14px 0 0;font-size:.9rem}}
-</style>
+<meta property="og:image" content="img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="A night-sky photo turned into a gold constellation chart by StarGuide">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preload" href="fonts/cormorant-garamond-latin-500-normal.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="preload" href="fonts/inter-latin-400-normal.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="preload" href="img/original.webp" as="image" type="image/webp">
+<link rel="stylesheet" href="css/style.css">
+<script>document.documentElement.className="js"</script>
 </head>
 <body>
-<div class="wrap">
-<nav><b>Star<span>Guide</span></b><div><a href="#styles">Styles</a><a href="#features">Features</a><a href="#download">Download</a><a href="#faq">FAQ</a></div></nav>
+<a class="skip" href="#main">Skip to content</a>
+<div class="progress" aria-hidden="true"><i id="progress"></i></div>
 
-<header class="hero">
-  <div>
-    <h1>Know exactly <em>what you photographed</em>.</h1>
-    <p class="lead">Drop in a night-sky photo. StarGuide recognises the stars <b>offline</b> and turns your picture into annotated constellation artwork you can print, share or keep. Free for Windows.</p>
-    <a class="btn" href="#download">Download free</a><a class="btn ghost" href="#styles">See the styles</a>
-    <p class="note">Works without internet. Your photos never leave your computer.</p>
-  </div>
-  <div>
-    <div class="ba" aria-label="Before and after comparison of a night-sky photo">
-      <img src="img/atlas.jpg" alt="The same photo as a gold Celestial Atlas star chart with constellations labelled">
-      <img id="top" src="img/original.jpg" alt="Original night-sky photo of the Milky Way core">
-      <div class="bar" id="bar"></div>
-      <span class="tag l">Your photo</span><span class="tag r">StarGuide</span>
-      <input type="range" min="0" max="100" value="50" id="rng" aria-label="Drag to compare">
-    </div>
-    <p class="note" style="text-align:center">Drag to compare. Phone photo of Sagittarius and Scorpius.</p>
+<header class="nav" id="nav">
+  <div class="wrap nav__in">
+    <a class="brand" href="#top" aria-label="StarGuide home">
+      <svg class="brand__mark" viewBox="0 0 64 64" aria-hidden="true"><path d="M32 6C34 25 39 30 58 32C39 34 34 39 32 58C30 39 25 34 6 32C25 30 30 25 32 6Z" fill="currentColor"/></svg>
+      <span>Star<b>Guide</b></span>
+    </a>
+    <nav class="nav__links" id="menu" aria-label="Main">
+      <a href="#how">How it works</a>
+      <a href="#features">Features</a>
+      <a href="#styles">Styles</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn btn--sm nav__cta" href="#download">Download</a>
+    <button class="burger" id="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="menu"><i></i><i></i></button>
   </div>
 </header>
 
-<section id="styles">
-  <h2>Pick a look</h2>
-  <p class="sub">Same stars, different mood. Eight ready-made styles, all adjustable.</p>
-  <div class="gallery">
-    <figure><img loading="lazy" src="img/atlas.jpg" alt="Celestial Atlas style"><figcaption><b>Celestial Atlas</b> – vintage gold star chart</figcaption></figure>
-    <figure><img loading="lazy" src="img/neon.jpg" alt="Neon Constellations style"><figcaption><b>Neon Constellations</b> – glowing lines</figcaption></figure>
-    <figure><img loading="lazy" src="img/minimal.jpg" alt="Minimal Ink style"><figcaption><b>Minimal Ink</b> – quiet, thin lines</figcaption></figure>
-    <figure><img loading="lazy" src="img/educational.jpg" alt="Clean Educational style"><figcaption><b>Clean Educational</b> – made for learning</figcaption></figure>
+<main id="main">
+<!-- HERO -->
+<section class="hero" id="top">
+  <canvas class="hero__sky" id="sky" aria-hidden="true"></canvas>
+  <div class="wrap hero__in">
+    <div class="hero__copy">
+      <p class="eyebrow"><span class="dot"></span> Free for Windows · works offline</p>
+      <h1>Know exactly <em>what you photographed.</em></h1>
+      <p class="lead">Drop in a night-sky photo. StarGuide recognises the stars on your own computer and turns the picture into annotated constellation artwork to print, share or keep.</p>
+      <div class="cta">
+        <a class="btn btn--lg" href="#download"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0l-5-5m5 5l5-5M5 20h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Download free</a>
+        <a class="btn btn--ghost btn--lg" href="#styles">See the styles</a>
+      </div>
+    </div>
+
+    <div class="stage" id="stage">
+      <div class="cmp" id="cmp" style="--pos:50%">
+        <img class="cmp__base" src="img/original.webp" width="1350" height="1800" alt="Original night-sky photo of the Milky Way core, taken on a phone" fetchpriority="high">
+        <div class="cmp__top">
+          <img class="cmp__img is-on" id="topA" src="img/atlas.webp" width="1391" height="1800" alt="The same photo as a gold Celestial Atlas chart with constellations and objects labelled">
+          <img class="cmp__img" id="topB" src="img/atlas.webp" alt="" aria-hidden="true">
+        </div>
+        <span class="cmp__tag cmp__tag--l">Your photo</span>
+        <span class="cmp__tag cmp__tag--r" id="tagR">Celestial Atlas</span>
+        <div class="cmp__handle" id="handle" role="slider" tabindex="0" aria-label="Compare your photo with the StarGuide result" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-valuetext="50% your photo">
+          <span class="cmp__grip"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </div>
+      <div class="chips" id="chips" role="group" aria-label="Choose a style">
+        <button type="button" class="chip is-on" data-style="atlas" aria-pressed="true">Atlas</button>
+        <button type="button" class="chip" data-style="neon" aria-pressed="false">Neon</button>
+        <button type="button" class="chip" data-style="minimal" aria-pressed="false">Minimal</button>
+        <button type="button" class="chip" data-style="blueprint" aria-pressed="false">Blueprint</button>
+        <button type="button" class="chip" data-style="watercolor" aria-pressed="false">Watercolor</button>
+        <button type="button" class="chip" data-style="educational" aria-pressed="false">Educational</button>
+      </div>
+      <p class="caption">Drag, or use the arrow keys. A phone photo of Sagittarius and Scorpius.</p>
+    </div>
+  </div>
+  <a class="scrollcue" href="#how" aria-label="Scroll to how it works"><i></i></a>
+</section>
+
+
+<!-- TRUST STRIP -->
+<section class="strip" aria-label="Why StarGuide">
+  <ul class="wrap strip__in">
+    <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 9a16 16 0 0 1 20 0M5.5 12.5a11 11 0 0 1 13 0M9 16a6 6 0 0 1 6 0M12 19.5h.01M3 3l18 18"/></svg><span><b>Works offline</b>No internet needed</span></li>
+    <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><span><b>Photos stay put</b>Never uploaded</span></li>
+    <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0M3 3l18 18"/></svg><span><b>No account</b>Just open and use</span></li>
+    <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.5 6.5L21 12l-6.500 2.500L12 21l-2.500-6.500L3 12l6.500-2.500z"/></svg><span><b>Free Edition</b>8 art styles included</span></li>
+  </ul>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="sec" id="how">
+  <div class="wrap">
+    <header class="sec__head reveal">
+      <p class="eyebrow">How it works</p>
+      <h2>From a photo to a finished chart <em>in three steps.</em></h2>
+      <p class="sub">No star-chart knowledge needed. StarGuide does the hard part.</p>
+    </header>
+    <ol class="steps" id="steps">
+      <li class="step reveal">
+        <div class="step__art" aria-hidden="true">
+          <svg viewBox="0 0 220 140"><rect x="30" y="22" width="160" height="96" rx="12" fill="none" stroke="currentColor" stroke-opacity=".5" stroke-dasharray="5 6"/><path d="M110 92V54m0 0l-14 14m14-14l14 14" fill="none" stroke="var(--gold)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="62" cy="42" r="1.6" fill="#fff"/><circle cx="160" cy="38" r="1.2" fill="#fff"/><circle cx="170" cy="96" r="1.8" fill="#fff"/><circle cx="52" cy="100" r="1.2" fill="#fff"/></svg>
+        </div>
+        <span class="step__n">01</span>
+        <h3>Drop a photo</h3>
+        <p>Phone shots, DSLR frames, tracked astrophotos: JPG, PNG, TIFF, HEIC and most camera RAW files.</p>
+      </li>
+      <li class="step reveal">
+        <div class="step__art" aria-hidden="true">
+          <svg viewBox="0 0 220 140" class="solve"><g class="solve__lines" fill="none" stroke="var(--cyan)" stroke-width="1.4" stroke-linecap="round"><path d="M40 98L78 64L112 78L146 40L184 54"/><path d="M112 78L130 112"/></g><g fill="#fff"><circle cx="40" cy="98" r="3"/><circle cx="78" cy="64" r="3.6"/><circle cx="112" cy="78" r="3"/><circle cx="146" cy="40" r="4"/><circle cx="184" cy="54" r="2.6"/><circle cx="130" cy="112" r="2.4"/></g><circle class="solve__ring" cx="146" cy="40" r="10" fill="none" stroke="var(--gold)"/></svg>
+        </div>
+        <span class="step__n">02</span>
+        <h3>Stars are recognised</h3>
+        <p>Offline plate solving matches the star pattern to find exactly where your camera was pointing. No upload, no account.</p>
+      </li>
+      <li class="step reveal">
+        <div class="step__art" aria-hidden="true">
+          <svg viewBox="0 0 220 140"><g><rect x="28" y="30" width="48" height="72" rx="8" fill="#1a2238" stroke="var(--gold)" stroke-opacity=".7"/><rect x="86" y="24" width="48" height="72" rx="8" fill="#13304a" stroke="var(--cyan)" stroke-opacity=".7"/><rect x="144" y="30" width="48" height="72" rx="8" fill="#232338" stroke="#fff" stroke-opacity=".35"/></g><path d="M40 78l12-14 10 8 8-12M98 74l12-18 10 10 8-14M156 80l12-10 10 6 6-10" fill="none" stroke="#fff" stroke-opacity=".8" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <span class="step__n">03</span>
+        <h3>Pick a style, export</h3>
+        <p>Choose from eight looks, tweak what you like, and save as PNG, JPG, 16-bit TIFF, SVG, PDF or layers.</p>
+      </li>
+    </ol>
   </div>
 </section>
 
-<section id="features">
-  <h2>What it does</h2>
-  <p class="sub">Built for people who photograph the night sky, from a phone to a tracked camera.</p>
-  <div class="grid">
-    <div class="card"><h3>Recognises your stars</h3><p>Offline plate solving finds exactly where your camera was pointing. No upload, no account.</p></div>
-    <div class="card"><h3>Labels everything</h3><p>Constellations, bright stars, Messier and NGC objects, planets, the Moon and more, placed so labels do not collide.</p></div>
-    <div class="card"><h3>Looks beautiful</h3><p>Eight art styles and full control over colours, fonts, lines and frames.</p></div>
-    <div class="card"><h3>Improves the photo</h3><p>Optional clean-up, stretch, colour calibration and detail tools. Your photo stays as shot unless you choose otherwise.</p></div>
-    <div class="card"><h3>Stacks and batches</h3><p>Combine exposures for cleaner results, or process a whole folder in one go.</p></div>
-    <div class="card"><h3>Export anything</h3><p>PNG, JPG, 16-bit TIFF, SVG, print-ready PDF, or layered files for your editor.</p></div>
+<!-- FEATURES -->
+<section class="sec sec--alt" id="features">
+  <div class="wrap">
+    <header class="sec__head reveal">
+      <p class="eyebrow">What it does</p>
+      <h2>Built for people who <em>photograph the night.</em></h2>
+      <p class="sub">From a phone on a windowsill to a tracked camera in a dark-sky field.</p>
+    </header>
+    <div class="showcase reveal" id="showcase">
+      <div class="tabs" role="tablist" aria-label="Features" aria-orientation="vertical">
+        <button class="tab is-on" role="tab" id="t-solve" aria-controls="p-solve" aria-selected="true">
+          <b>Recognises your stars</b><span>Offline plate solving</span></button>
+        <button class="tab" role="tab" id="t-label" aria-controls="p-label" aria-selected="false" tabindex="-1">
+          <b>Labels everything</b><span>Constellations, objects, planets</span></button>
+        <button class="tab" role="tab" id="t-look" aria-controls="p-look" aria-selected="false" tabindex="-1">
+          <b>Looks beautiful</b><span>Eight art styles, full control</span></button>
+        <button class="tab" role="tab" id="t-fix" aria-controls="p-fix" aria-selected="false" tabindex="-1">
+          <b>Improves the photo</b><span>Only when you ask</span></button>
+        <button class="tab" role="tab" id="t-stack" aria-controls="p-stack" aria-selected="false" tabindex="-1">
+          <b>Stacks and batches</b><span>Cleaner results, whole folders</span></button>
+        <button class="tab" role="tab" id="t-export" aria-controls="p-export" aria-selected="false" tabindex="-1">
+          <b>Export anything</b><span>Print, web or your editor</span></button>
+      </div>
+      <div class="panels">
+        <div class="panel is-on" role="tabpanel" id="p-solve" aria-labelledby="t-solve" tabindex="0">
+          <figure><img src="img/blueprint-sm.webp" width="560" height="733" loading="lazy" alt="Blueprint-style chart with coordinate grid, produced after the stars were recognised"></figure>
+          <div><h3>Finds exactly where you were pointing</h3>
+          <p>StarGuide matches the pattern of stars in your picture against its built-in catalogues, entirely on your computer. You get precise sky coordinates, field of view and a grid you can trust.</p>
+          <ul class="ticks"><li>Works offline, no account</li><li>Handles phone and camera photos</li><li>Your photos never leave the PC</li></ul></div>
+        </div>
+        <div class="panel" role="tabpanel" id="p-label" aria-labelledby="t-label" tabindex="0" hidden>
+          <figure><img src="img/educational-sm.webp" width="560" height="725" loading="lazy" alt="Clean Educational style with colour-coded labels for constellations, stars and nebulae"></figure>
+          <div><h3>Names what is actually in frame</h3>
+          <p>Constellation figures, bright stars, Messier and NGC objects, planets and the Moon, placed so labels do not collide with each other.</p>
+          <ul class="ticks"><li>Colour-coded by object type</li><li>Collision-free label placement</li><li>Toggle any layer on or off</li></ul></div>
+        </div>
+        <div class="panel" role="tabpanel" id="p-look" aria-labelledby="t-look" tabindex="0" hidden>
+          <figure><img src="img/neon-sm.webp" width="560" height="747" loading="lazy" alt="Neon Constellations style with glowing cyan and magenta lines"></figure>
+          <div><h3>Eight styles, endlessly adjustable</h3>
+          <p>From vintage gold atlas to glowing neon, each style is a starting point. Change colours, fonts, line weight and frames until it is yours.</p>
+          <ul class="ticks"><li>Atlas, Neon, Ink, Blueprint and more</li><li>Full control of colour, type and lines</li><li>Print-ready poster layouts</li></ul></div>
+        </div>
+        <div class="panel" role="tabpanel" id="p-fix" aria-labelledby="t-fix" tabindex="0" hidden>
+          <div class="chipcloud" aria-hidden="true"><span>Clean-up</span><span>Stretch</span><span>Colour calibration</span><span>Detail tools</span><span>Gradient removal</span></div>
+          <div><h3>Your photo stays as shot, unless you choose</h3>
+          <p>Optional clean-up, stretch, colour calibration and detail tools are there when you want them. Nothing is applied behind your back.</p>
+          <ul class="ticks"><li>Opt-in, never automatic</li><li>Compare against the original</li><li>Non-destructive</li></ul></div>
+        </div>
+        <div class="panel" role="tabpanel" id="p-stack" aria-labelledby="t-stack" tabindex="0" hidden>
+          <div class="chipcloud" aria-hidden="true"><span>Exposure stacking</span><span>Batch a folder</span><span>Same style, every photo</span></div>
+          <div><h3>More frames, cleaner sky</h3>
+          <p>Combine several exposures for less noise, or point StarGuide at a whole folder and process every photo in one go.</p>
+          <ul class="ticks"><li>Stack exposures of the same sky</li><li>Batch-process an entire folder</li><li>Reuse a style across a trip</li></ul></div>
+        </div>
+        <div class="panel" role="tabpanel" id="p-export" aria-labelledby="t-export" tabindex="0" hidden>
+          <div class="chipcloud chipcloud--fmt" aria-hidden="true"><span>PNG</span><span>JPG</span><span>16-bit TIFF</span><span>SVG</span><span>PDF</span><span>Layers</span></div>
+          <div><h3>Ready for the wall, the web or your editor</h3>
+          <p>Export a flat image, a 16-bit TIFF for serious editing, scalable SVG, a print-ready PDF, or separate layers to finish in your own editor.</p>
+          <ul class="ticks"><li>Print-ready PDF and vector SVG</li><li>16-bit TIFF for editing</li><li>Layered output</li></ul></div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<section id="download">
-  <div class="dl">
-    <h2>Download StarGuide</h2>
-    <p class="sub">Free. Windows 10 / 11, 64-bit.</p>
-    <a class="btn" href="https://github.com/44-61-6B-73-68/StarGuide-releases/releases/latest">Download for Windows</a>
-    <p class="note">Unzip the folder anywhere and run <b>StarGuide.exe</b>. About 430 MB.<br>Mac and Linux versions are planned.</p>
+<!-- STYLES -->
+<section class="sec" id="styles">
+  <div class="wrap">
+    <header class="sec__head reveal">
+      <p class="eyebrow">Styles</p>
+      <h2>Same stars. <em>Eight moods.</em></h2>
+      <p class="sub">Every image below was made by StarGuide from the very same phone photo. Click one to see it larger.</p>
+    </header>
+    <ul class="gallery">
+      <li class="reveal"><a href="img/atlas.webp" data-cap="Celestial Atlas — vintage star chart with fine gold linework"><img src="img/atlas-sm.webp" width="560" height="725" loading="lazy" alt="Celestial Atlas style"><span><b>Celestial Atlas</b>Vintage gold star chart</span></a></li>
+      <li class="reveal"><a href="img/neon.webp" data-cap="Neon Constellations — glowing lines over a deepened sky"><img src="img/neon-sm.webp" width="560" height="747" loading="lazy" alt="Neon Constellations style"><span><b>Neon Constellations</b>Glowing lines</span></a></li>
+      <li class="reveal"><a href="img/minimal.webp" data-cap="Minimal Ink — ultra-thin lines and quiet small-caps labels"><img src="img/minimal-sm.webp" width="560" height="747" loading="lazy" alt="Minimal Ink style"><span><b>Minimal Ink</b>Quiet, thin lines</span></a></li>
+      <li class="reveal"><a href="img/blueprint.webp" data-cap="Blueprint — technical drawing with grid and coordinate ticks"><img src="img/blueprint-sm.webp" width="560" height="733" loading="lazy" alt="Blueprint style"><span><b>Blueprint</b>Technical drawing</span></a></li>
+      <li class="reveal"><a href="img/watercolor.webp" data-cap="Watercolor Sky — painterly washes and a pastel palette"><img src="img/watercolor-sm.webp" width="560" height="747" loading="lazy" alt="Watercolor Sky style"><span><b>Watercolor Sky</b>Soft painterly washes</span></a></li>
+      <li class="reveal"><a href="img/cinematic.webp" data-cap="Cinematic — film-like grade and an elegant title card"><img src="img/cinematic-sm.webp" width="560" height="896" loading="lazy" alt="Cinematic style"><span><b>Cinematic</b>Film-like title card</span></a></li>
+      <li class="reveal"><a href="img/poster.webp" data-cap="Stardust Poster — a framed print with title, legend and mini sky chart"><img src="img/poster-sm.webp" width="560" height="887" loading="lazy" alt="Stardust Poster style"><span><b>Stardust Poster</b>Framed print</span></a></li>
+      <li class="reveal"><a href="img/educational.webp" data-cap="Clean Educational — high-contrast, colour-coded labels"><img src="img/educational-sm.webp" width="560" height="725" loading="lazy" alt="Clean Educational style"><span><b>Clean Educational</b>Made for learning</span></a></li>
+    </ul>
   </div>
 </section>
 
-<section id="faq">
-  <h2>Questions</h2>
-  <details><summary>Windows says "unknown publisher". Is it safe?</summary><p>StarGuide is a new independent app and is not code-signed yet, so Windows SmartScreen shows a warning. Click <b>More info</b>, then <b>Run anyway</b>.</p></details>
-  <details><summary>Does it need the internet?</summary><p>No. Star recognition, catalogues and rendering all run on your computer. Only optional extras (online solving, satellite data, update check) use the internet, and only when you switch them on.</p></details>
-  <details><summary>What photos work?</summary><p>JPG, PNG, TIFF, HEIC and most camera RAW files, from phone shots to wide-field astrophotos.</p></details>
-  <details><summary>Is it really free?</summary><p>Yes. This version is free to use and keep. Future versions may add paid editions, but the copy you download stays yours.</p></details>
+<!-- DOWNLOAD -->
+<section class="sec sec--alt" id="download">
+  <div class="wrap">
+    <header class="sec__head reveal">
+      <p class="eyebrow">Download</p>
+      <h2>Free, and yours <em>to keep.</em></h2>
+      <p class="sub" id="osnote">StarGuide Free Edition for Windows 10 and 11.</p>
+    </header>
+    <div class="dl reveal">
+      <div class="oses" role="list">
+        <div class="os os--on" role="listitem" id="os-win" data-os="win">
+          <h3>Windows</h3>
+          <p>Windows 10 / 11, 64-bit</p>
+          <a class="btn btn--lg" href="https://github.com/44-61-6B-73-68/StarGuide-releases/releases/latest">Download for Windows</a>
+          <small>Free Edition · about 430 MB (zip)</small>
+        </div>
+        <div class="os os--soon" role="listitem" id="os-mac" data-os="mac"><h3>macOS</h3><p>Planned</p><span class="pill">Not available yet</span></div>
+        <div class="os os--soon" role="listitem" id="os-lin" data-os="lin"><h3>Linux</h3><p>Planned</p><span class="pill">Not available yet</span></div>
+      </div>
+      <div class="install">
+        <h3>Install in a minute</h3>
+        <ol class="isteps">
+          <li><span><b>Download</b> the zip from the releases page.</span></li>
+          <li><span><b>Unzip</b> the folder anywhere you like. No installer.</span></li>
+          <li><span><b>Run</b> <code>StarGuide.exe</code>.</span></li>
+        </ol>
+        <div class="callout">
+          <b>Windows shows a blue warning?</b>
+          <p>StarGuide is a new independent app and is not code-signed yet, so SmartScreen warns about an unknown publisher. Click <b>More info</b>, then <b>Run anyway</b>.</p>
+        </div>
+      </div>
+      <dl class="specs">
+        <div><dt>System</dt><dd>Windows 10 / 11, 64-bit</dd></div>
+        <div><dt>Download</dt><dd>About 430 MB</dd></div>
+        <div><dt>Internet</dt><dd>Not needed</dd></div>
+        <div><dt>Account</dt><dd>None</dd></div>
+      </dl>
+    </div>
+  </div>
 </section>
-</div>
 
-<footer><div class="wrap">StarGuide · made by Daksh · Free Edition. Star data from HYG, OpenNGC, Gaia (ESA), Hipparcos and NASA/JPL; constellation data from Stellarium; plate solving with tetra3 (ESA).</div></footer>
+<!-- FAQ -->
+<section class="sec" id="faq">
+  <div class="wrap wrap--narrow">
+    <header class="sec__head reveal">
+      <p class="eyebrow">FAQ</p>
+      <h2>Questions, <em>answered.</em></h2>
+    </header>
+    <div class="faq reveal">
+      <details><summary>Windows says "unknown publisher". Is it safe?</summary><div class="ans"><p>StarGuide is a new independent app and is not code-signed yet, so Windows SmartScreen shows a warning. Click <b>More info</b>, then <b>Run anyway</b>.</p></div></details>
+      <details><summary>Does it need the internet?</summary><div class="ans"><p>No. Star recognition, catalogues and rendering all run on your computer. Only optional extras (online solving, satellite data, update check) use the internet, and only when you switch them on.</p></div></details>
+      <details><summary>What photos work?</summary><div class="ans"><p>JPG, PNG, TIFF, HEIC and most camera RAW files, from phone shots to wide-field astrophotos.</p></div></details>
+      <details><summary>Is it really free?</summary><div class="ans"><p>Yes. This version is free to use and keep. Future versions may add paid editions, but the copy you download stays yours.</p></div></details>
+      <details><summary>Will there be a Mac or Linux version?</summary><div class="ans"><p>They are planned, but only Windows is available today.</p></div></details>
+    </div>
+  </div>
+</section>
+</main>
 
-<script>
-(function(){
-  var r=document.getElementById('rng'),t=document.getElementById('top'),b=document.getElementById('bar');
-  function set(v){t.style.clipPath='inset(0 '+(100-v)+'% 0 0)';b.style.left=v+'%';}
-  r.addEventListener('input',function(){set(r.value)});set(50);
-})();
-</script>
+<footer class="foot">
+  <div class="wrap foot__in">
+    <div>
+      <a class="brand" href="#top"><svg class="brand__mark" viewBox="0 0 64 64" aria-hidden="true"><path d="M32 6C34 25 39 30 58 32C39 34 34 39 32 58C30 39 25 34 6 32C25 30 30 25 32 6Z" fill="currentColor"/></svg><span>Star<b>Guide</b></span></a>
+      <p>Free Edition · made by Daksh</p>
+    </div>
+    <p class="credits">Star and object data from HYG, OpenNGC, Gaia (ESA), Hipparcos and NASA/JPL. Constellation data from Stellarium. Plate solving with tetra3 (ESA).</p>
+  </div>
+</footer>
+
+<dialog class="lb" id="lb" aria-label="Image viewer">
+  <button class="lb__x" type="button" aria-label="Close">×</button>
+  <button class="lb__nav lb__prev" type="button" aria-label="Previous style">‹</button>
+  <figure><img id="lbImg" alt=""><figcaption id="lbCap"></figcaption></figure>
+  <button class="lb__nav lb__next" type="button" aria-label="Next style">›</button>
+</dialog>
+
+<script src="js/main.js" defer></script>
 </body>
 </html>
