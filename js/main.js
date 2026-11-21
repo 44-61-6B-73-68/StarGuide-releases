@@ -124,14 +124,6 @@ $$(".step,.install").forEach(function(c){
     set(pos);
   }
   chips.forEach(function(c){c.addEventListener("click",function(){stopAuto();show(c.dataset.style)})});
-  /* honest preview toggle: brightened vs as shot */
-  var pv=$("#tagL"),base=$("#base"),tagL=pv;if(pv)pv.addEventListener("pointerdown",function(e){e.stopPropagation()});
-  if(pv)pv.addEventListener("click",function(){
-    var on=pv.getAttribute("aria-pressed")!=="true";pv.setAttribute("aria-pressed",on);
-    base.src=on?"img/original-bright.webp":"img/original.webp";
-    base.alt=on?"Your night-sky photo of the Milky Way core, taken on a phone, with the brightness lifted for this preview":"Your night-sky photo as shot: very dark, with only a few stars visible";
-    tagL.firstChild.nodeValue="Your photo ";tagL.querySelector("i").textContent=on?"brightened":"as shot";pv.setAttribute("aria-label",on?"Brightened for preview. Press to show the photo as shot.":"Shown as shot. Press to brighten for preview.");
-  });
   /* warm the cache when the browser is idle */
   var idle=window.requestIdleCallback||function(f){setTimeout(f,1800)};
   var sd=navigator.connection&&navigator.connection.saveData;

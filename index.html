@@ -62,12 +62,12 @@
 
     <div class="stage" id="stage">
       <div class="cmp" id="cmp" style="--pos:50%">
-        <img class="cmp__base" id="base" src="img/original-bright.webp" width="1100" height="1467" alt="Your night-sky photo of the Milky Way core, taken on a phone, with the brightness lifted for this preview" fetchpriority="high">
+        <img class="cmp__base" id="base" src="img/original-bright.webp" width="1100" height="1467" alt="Your night-sky photo of the Milky Way core, taken on a phone" fetchpriority="high">
         <div class="cmp__top">
           <img class="cmp__img is-on" id="topA" src="img/atlas.webp" width="1391" height="1800" alt="The same photo as a gold Celestial Atlas chart with constellations and objects labelled">
           <img class="cmp__img" id="topB" src="img/atlas.webp" width="1391" height="1800" alt="" aria-hidden="true">
         </div>
-        <button type="button" class="cmp__tag cmp__tag--l cmp__tog" id="tagL" aria-pressed="true" aria-label="Brightened for preview. Press to show the photo as shot.">Your photo <i>brightened</i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7l-4 5 4 5M17 7l4 5-4 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <span class="cmp__tag cmp__tag--l" id="tagL">Your photo</span>
         <span class="cmp__tag cmp__tag--r" id="tagR">Celestial Atlas</span>
         <span class="cmp__hint" aria-hidden="true">Drag to compare</span>
         <div class="cmp__handle" id="handle" role="slider" tabindex="0" aria-label="Compare your photo with the StarGuide result" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-valuetext="50% your photo">
@@ -84,7 +84,7 @@
         <button type="button" class="chip" data-style="poster" aria-pressed="false">Poster</button>
         <button type="button" class="chip" data-style="educational" aria-pressed="false">Educational</button>
       </div>
-      <p class="caption">961 stars matched in this phone photo. The raw file is far darker: press “brightened” to see it as shot.</p>
+      <p class="caption">961 stars matched in this phone photo.</p>
     </div>
   </div>
   <a class="scrollcue" href="#how" aria-label="Scroll to how it works"><i></i></a>
