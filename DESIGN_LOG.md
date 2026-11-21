@@ -33,3 +33,18 @@ Changed: no-JS fallbacks (all feature panels visible, tabs hidden), dashed non-o
 ## Round 8: tablet/desktop polish + hero life
 Critique: scrollbar on the mobile tab strip, hero looked small on 1920, hero loaded all at once.
 Changed: hidden tab scrollbar with edge fade, staggered hero entrance, glow behind the slider changes colour with the chosen style, wider layout and bigger headline at 1600px+, no idle image prefetch on phones or Save-Data.
+
+## Round 9: closing CTA + chip bug
+Critique: page ended abruptly after the FAQ; choosing a style chip during the intro sweep left the slider parked at 100% so the new style was invisible.
+Changed: closing "Find out what is in your sky" band with the download button, footer back-to-top, chips now glide the slider back to centre when the overlay would be hidden.
+
+## Round 10: final verification
+Critique: on 360px the 2-up gallery captions covered too much of the images.
+Changed: compact mobile captions. Verified: no console errors, no external requests, download href unchanged, no horizontal scroll at 360/768/1280/1920, keyboard (slider, tabs, FAQ, lightbox, menu) works.
+
+## Known weaknesses / next ideas
+- Fonts are TTF (no woff2 tool available offline); subsetting would save about 250 KB.
+- Real app UI screenshots are not shown yet (only rendered output); a clean screenshot of the main window would add credibility.
+- The source photo is dark, so the "before" half looks nearly black; a brighter example photo would show the contrast better.
+- No real-device testing (iOS Safari / Android Chrome) yet; backdrop-filter and dialog fallbacks unchecked.
+- Slider glow transition between styles is instant, not eased.

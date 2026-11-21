@@ -110,16 +110,19 @@ $$(".step,.install").forEach(function(c){
   if(!sd&&window.innerWidth>760)idle(function(){Object.keys(names).forEach(function(k){if(k!=="atlas"){var i=new Image();i.src="img/"+k+".webp"}})});
   /* gentle intro sweep, cancelled by any interaction */
   var auto=null;
-  function stopAuto(){cmp.classList.add("is-touched");if(auto){cancelAnimationFrame(auto);auto=null}}
+  function cancelAuto(){if(auto){cancelAnimationFrame(auto);auto=null}}
+  function stopAuto(){cmp.classList.add("is-touched");cancelAuto()}
+  function animateTo(to,dur){
+    cancelAuto();var from=pos,t0=null;
+    auto=requestAnimationFrame(function f(t){
+      if(t0===null)t0=t;var k=Math.min(1,(t-t0)/dur),e=1-Math.pow(1-k,3);
+      set(from+(to-from)*e);if(k<1)auto=requestAnimationFrame(f);else auto=null;
+    });
+  }
+  chips.forEach(function(c){c.addEventListener("click",function(){if(pos>72||pos<8)animateTo(50,reduce?1:700)})});
   if(!reduce){
-    set(100);var t0=null;
-    var from=100,to=50,dur=1900;
-    setTimeout(function(){
-      auto=requestAnimationFrame(function f(t){
-        if(t0===null)t0=t;var k=Math.min(1,(t-t0)/dur),e=1-Math.pow(1-k,3);
-        set(from+(to-from)*e);if(k<1)auto=requestAnimationFrame(f);else auto=null;
-      });
-    },500);
+    set(100);
+    setTimeout(function(){if(!cmp.classList.contains("is-touched"))animateTo(50,1900)},500);
   }else set(50);
   set(pos);
 })();
