@@ -48,11 +48,12 @@
 <!-- HERO -->
 <section class="hero" id="top">
   <canvas class="hero__sky" id="sky" aria-hidden="true"></canvas>
+  <div class="hero__glow" id="glow" aria-hidden="true"></div>
   <div class="wrap hero__in">
     <div class="hero__copy">
       <p class="eyebrow"><span class="dot"></span> Free for Windows · works offline</p>
       <h1>Know exactly <em>what you photographed.</em></h1>
-      <p class="lead">Drop in a night-sky photo. StarGuide recognises the stars on your own computer and turns the picture into annotated constellation artwork to print, share or keep.</p>
+      <p class="lead">Drop in a night-sky photo. StarGuide recognises the stars on your own computer and turns it into constellation artwork to print, share or keep.</p>
       <div class="cta">
         <a class="btn btn--lg" href="#download"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0l-5-5m5 5l5-5M5 20h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Download free</a>
         <a class="btn btn--ghost btn--lg" href="#styles">See the styles</a>
@@ -64,7 +65,7 @@
         <img class="cmp__base" id="base" src="img/original-bright.webp" width="1100" height="1467" alt="Your night-sky photo of the Milky Way core, taken on a phone, with the brightness lifted for this preview" fetchpriority="high">
         <div class="cmp__top">
           <img class="cmp__img is-on" id="topA" src="img/atlas.webp" width="1391" height="1800" alt="The same photo as a gold Celestial Atlas chart with constellations and objects labelled">
-          <img class="cmp__img" id="topB" src="img/atlas.webp" alt="" aria-hidden="true">
+          <img class="cmp__img" id="topB" src="img/atlas.webp" width="1391" height="1800" alt="" aria-hidden="true">
         </div>
         <button type="button" class="cmp__tag cmp__tag--l cmp__tog" id="tagL" aria-pressed="true" aria-label="Brightened for preview. Press to show the photo as shot.">Your photo <i>brightened</i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7l-4 5 4 5M17 7l4 5-4 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         <span class="cmp__tag cmp__tag--r" id="tagR">Celestial Atlas</span>
@@ -90,23 +91,23 @@
 </section>
 
 
-<!-- TRUST STRIP -->
-<section class="strip" aria-label="Why StarGuide">
-  <ul class="wrap strip__in">
-    <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 9a16 16 0 0 1 20 0M5.5 12.5a11 11 0 0 1 13 0M9 16a6 6 0 0 1 6 0M12 19.5h.01M3 3l18 18"/></svg><span><b>Works offline</b>No internet needed</span></li>
-    <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><span><b>Photos stay put</b>Never uploaded</span></li>
-    <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0M3 3l18 18"/></svg><span><b>No account</b>Just open and use</span></li>
-    <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.5 6.5L21 12l-6.500 2.500L12 21l-2.500-6.500L3 12l6.500-2.500z"/></svg><span><b>Free Edition</b>8 art styles included</span></li>
+<!-- FACTS -->
+<section class="facts" aria-label="StarGuide in numbers">
+  <ul class="wrap facts__in">
+    <li><b data-n="8">8</b><span>art styles, all adjustable</span></li>
+    <li><b data-n="961">961</b><span>stars matched in the photo above</span></li>
+    <li><b data-n="6">6</b><span>ways to export, up to 16-bit TIFF</span></li>
+    <li><b data-n="0">0</b><span>accounts needed; photos stay on your PC</span></li>
   </ul>
 </section>
 
 <!-- HOW IT WORKS -->
 <section class="sec" id="how">
   <div class="wrap">
-    <header class="sec__head reveal">
+    <header class="sec__head sec__head--left reveal">
       <p class="eyebrow">How it works</p>
       <h2>From a photo to a finished chart <em>in three steps.</em></h2>
-      <p class="sub">No star-chart knowledge needed. StarGuide does the hard part.</p>
+      <p class="sub">No star-chart knowledge needed.</p>
     </header>
     <ol class="steps" id="steps">
       <li class="step reveal">
@@ -115,7 +116,7 @@
         </div>
         <span class="step__n">01</span>
         <h3>Drop a photo</h3>
-        <p>Phone shots, DSLR frames, tracked astrophotos: JPG, PNG, TIFF, HEIC and most camera RAW files.</p>
+        <p>Phone shots, DSLR frames, tracked astrophotos. JPG, PNG, TIFF, HEIC and most camera RAW files.</p>
       </li>
       <li class="step reveal">
         <div class="step__art" aria-hidden="true">
@@ -123,7 +124,7 @@
         </div>
         <span class="step__n">02</span>
         <h3>Stars are recognised</h3>
-        <p>Offline plate solving matches the star pattern to find exactly where your camera was pointing. No upload, no account.</p>
+        <p>Offline plate solving matches the star pattern to find exactly where your camera pointed. No upload, no account.</p>
       </li>
       <li class="step reveal">
         <div class="step__art step__art--styles" aria-hidden="true">
@@ -131,16 +132,25 @@
         </div>
         <span class="step__n">03</span>
         <h3>Pick a style, export</h3>
-        <p>Choose from eight looks, tweak what you like, and save as PNG, JPG, 16-bit TIFF, SVG, PDF or layers.</p>
+        <p>Choose one of eight looks, tweak it, and save as PNG, JPG, 16-bit TIFF, SVG, PDF or layers.</p>
       </li>
     </ol>
+  </div>
+</section>
+
+<!-- STATEMENT -->
+<section class="statement" aria-label="Our promise">
+  <img class="statement__bg" src="img/original-bright.webp" width="1100" height="1467" alt="" loading="lazy" decoding="async">
+  <div class="wrap reveal">
+    <p class="statement__text">Your sky, named.<br><em>Your photos stay yours.</em></p>
+    <p class="statement__sub">Recognition, catalogues and rendering all run on your computer.</p>
   </div>
 </section>
 
 <!-- FEATURES -->
 <section class="sec sec--alt" id="features">
   <div class="wrap">
-    <header class="sec__head reveal">
+    <header class="sec__head sec__head--left reveal">
       <p class="eyebrow">What it does</p>
       <h2>Built for people who <em>photograph the night.</em></h2>
       <p class="sub">From a phone on a windowsill to a tracked camera in a dark-sky field.</p>
@@ -162,25 +172,25 @@
       </div>
       <div class="panels">
         <div class="panel is-on" role="tabpanel" id="p-solve" aria-labelledby="t-solve" tabindex="0">
-          <figure><img src="img/blueprint-sm.webp" width="560" height="733" loading="lazy" alt="Blueprint-style chart with coordinate grid, produced after the stars were recognised"></figure>
+          <figure><img src="img/blueprint-sm.webp" width="560" height="733" loading="lazy" decoding="async" alt="Blueprint-style chart with coordinate grid, produced after the stars were recognised"></figure>
           <div><h3>Finds exactly where you were pointing</h3>
           <p>StarGuide matches the pattern of stars in your picture against its built-in catalogues, entirely on your computer. You get precise sky coordinates, field of view and a grid you can trust.</p>
           <ul class="ticks"><li>Works offline, no account</li><li>Handles phone and camera photos</li><li>Your photos never leave the PC</li></ul></div>
         </div>
         <div class="panel" role="tabpanel" id="p-label" aria-labelledby="t-label" tabindex="0" hidden>
-          <figure><img src="img/educational-sm.webp" width="560" height="725" loading="lazy" alt="Clean Educational style with colour-coded labels for constellations, stars and nebulae"></figure>
+          <figure><img src="img/educational-sm.webp" width="560" height="725" loading="lazy" decoding="async" alt="Clean Educational style with colour-coded labels for constellations, stars and nebulae"></figure>
           <div><h3>Names what is actually in frame</h3>
           <p>Constellation figures, bright stars, Messier and NGC objects, planets and the Moon, placed so labels do not collide with each other.</p>
           <ul class="ticks"><li>Colour-coded by object type</li><li>Collision-free label placement</li><li>Toggle any layer on or off</li></ul></div>
         </div>
         <div class="panel" role="tabpanel" id="p-look" aria-labelledby="t-look" tabindex="0" hidden>
-          <figure><img src="img/neon-sm.webp" width="560" height="747" loading="lazy" alt="Neon Constellations style with glowing cyan and magenta lines"></figure>
+          <figure><img src="img/neon-sm.webp" width="560" height="747" loading="lazy" decoding="async" alt="Neon Constellations style with glowing cyan and magenta lines"></figure>
           <div><h3>Eight styles, endlessly adjustable</h3>
           <p>From vintage gold atlas to glowing neon, each style is a starting point. Change colours, fonts, line weight and frames until it is yours.</p>
           <ul class="ticks"><li>Atlas, Neon, Ink, Blueprint and more</li><li>Full control of colour, type and lines</li><li>Print-ready poster layouts</li></ul></div>
         </div>
         <div class="panel" role="tabpanel" id="p-fix" aria-labelledby="t-fix" tabindex="0" hidden>
-          <figure class="crop"><img src="img/app-enhance.webp" width="525" height="413" loading="lazy" alt="The Enhance section of StarGuide: Auto-enhance and Original buttons, an Edit this photo switch and an Enhance strength slider"></figure>
+          <figure class="crop"><img src="img/app-enhance.webp" width="420" height="330" loading="lazy" decoding="async" alt="The Enhance section of StarGuide: Auto-enhance and Original buttons, an Edit this photo switch (off) and an Enhance strength slider at 0%"></figure>
           <div><h3>Your photo stays as shot, unless you choose</h3>
           <p>Optional clean-up, stretch, colour calibration and detail tools are there when you want them. Nothing is applied behind your back.</p>
           <ul class="ticks"><li>Opt-in, never automatic</li><li>One-click Auto-enhance or manual controls</li><li>Back to Original at any time</li></ul></div>
@@ -218,18 +228,19 @@
     <header class="sec__head reveal">
       <p class="eyebrow">Inside the app</p>
       <h2>A calm, <em>focused workspace.</em></h2>
-      <p class="sub">Pick a style on the left, fine-tune on the right, export from the toolbar. Real screenshots of StarGuide on Windows.</p>
+      <p class="sub">Pick a style on the left, fine-tune on the right, export from the toolbar. Real screenshots, taken on Windows.</p>
     </header>
     <div class="appshot reveal" id="appshot">
       <div class="appshot__bar" role="group" aria-label="Choose a screenshot">
         <button type="button" class="chip is-on" data-shot="neon" aria-pressed="true">Neon Constellations</button>
         <button type="button" class="chip" data-shot="atlas" aria-pressed="false">Celestial Atlas</button>
+        <button type="button" class="chip chip--ghost" id="appopen">View full size</button>
       </div>
-      <div class="appshot__frame">
-        <img class="appshot__img is-on" id="shotA" src="img/app-neon.webp" width="1600" height="1000" loading="lazy" alt="The StarGuide window: a style gallery on the left, the photo with glowing neon constellation lines in the centre, and photo controls on the right">
-        <img class="appshot__img" id="shotB" src="img/app-atlas.webp" width="1600" height="1000" loading="lazy" alt="" aria-hidden="true">
+      <div class="appshot__frame" id="appframe" tabindex="-1">
+        <img class="appshot__img is-on" id="shotA" src="img/app-neon.webp" width="1600" height="1000" loading="lazy" decoding="async" alt="The StarGuide window: a style gallery on the left, the photo with glowing neon constellation lines in the centre, and photo controls on the right">
+        <img class="appshot__img" id="shotB" src="img/app-atlas.webp" width="1600" height="1000" loading="lazy" decoding="async" alt="" aria-hidden="true">
       </div>
-      <p class="caption">Screenshots of the Windows app with the optional Auto-enhance switched on for this photo.</p>
+      <p class="caption">Screenshots of the Windows app. The photo is shown as shot: editing is switched off. Tap an image to zoom.</p>
     </div>
   </div>
 </section>
@@ -237,20 +248,20 @@
 <!-- STYLES -->
 <section class="sec" id="styles">
   <div class="wrap">
-    <header class="sec__head reveal">
+    <header class="sec__head sec__head--left reveal">
       <p class="eyebrow">Styles</p>
       <h2>Same stars. <em>Eight moods.</em></h2>
-      <p class="sub">Every image below was made by StarGuide from the very same phone photo. Click one to see it larger.</p>
+      <p class="sub">All eight were made by StarGuide from the same phone photo. Click one to enlarge.</p>
     </header>
     <ul class="gallery">
-      <li class="reveal"><a href="img/atlas.webp" data-cap="Celestial Atlas — vintage star chart with fine gold linework"><img src="img/atlas-sm.webp" width="560" height="725" loading="lazy" alt="Celestial Atlas style"><span><b>Celestial Atlas</b>Vintage gold star chart</span></a></li>
-      <li class="reveal"><a href="img/neon.webp" data-cap="Neon Constellations — glowing lines over a deepened sky"><img src="img/neon-sm.webp" width="560" height="747" loading="lazy" alt="Neon Constellations style"><span><b>Neon Constellations</b>Glowing lines</span></a></li>
-      <li class="reveal"><a href="img/minimal.webp" data-cap="Minimal Ink — ultra-thin lines and quiet small-caps labels"><img src="img/minimal-sm.webp" width="560" height="747" loading="lazy" alt="Minimal Ink style"><span><b>Minimal Ink</b>Quiet, thin lines</span></a></li>
-      <li class="reveal"><a href="img/blueprint.webp" data-cap="Blueprint — technical drawing with grid and coordinate ticks"><img src="img/blueprint-sm.webp" width="560" height="733" loading="lazy" alt="Blueprint style"><span><b>Blueprint</b>Technical drawing</span></a></li>
-      <li class="reveal"><a href="img/watercolor.webp" data-cap="Watercolor Sky — painterly washes and a pastel palette"><img src="img/watercolor-sm.webp" width="560" height="747" loading="lazy" alt="Watercolor Sky style"><span><b>Watercolor Sky</b>Soft painterly washes</span></a></li>
-      <li class="reveal"><a href="img/cinematic.webp" data-cap="Cinematic — film-like grade and an elegant title card"><img src="img/cinematic-sm.webp" width="560" height="896" loading="lazy" alt="Cinematic style"><span><b>Cinematic</b>Film-like title card</span></a></li>
-      <li class="reveal"><a href="img/poster.webp" data-cap="Stardust Poster — a framed print with title, legend and mini sky chart"><img src="img/poster-sm.webp" width="560" height="887" loading="lazy" alt="Stardust Poster style"><span><b>Stardust Poster</b>Framed print</span></a></li>
-      <li class="reveal"><a href="img/educational.webp" data-cap="Clean Educational — high-contrast, colour-coded labels"><img src="img/educational-sm.webp" width="560" height="725" loading="lazy" alt="Clean Educational style"><span><b>Clean Educational</b>Made for learning</span></a></li>
+      <li class="reveal g-big"><a href="img/atlas.webp" data-cap="Celestial Atlas — vintage star chart with fine gold linework"><img src="img/atlas.webp" width="1391" height="1800" loading="lazy" decoding="async" alt="Celestial Atlas style"><span><b>Celestial Atlas</b>Vintage gold star chart</span></a></li>
+      <li class="reveal"><a href="img/neon.webp" data-cap="Neon Constellations — glowing lines over a deepened sky"><img src="img/neon-sm.webp" width="560" height="747" loading="lazy" decoding="async" alt="Neon Constellations style"><span><b>Neon Constellations</b>Glowing lines</span></a></li>
+      <li class="reveal"><a href="img/minimal.webp" data-cap="Minimal Ink — ultra-thin lines and quiet small-caps labels"><img src="img/minimal-sm.webp" width="560" height="747" loading="lazy" decoding="async" alt="Minimal Ink style"><span><b>Minimal Ink</b>Quiet, thin lines</span></a></li>
+      <li class="reveal"><a href="img/blueprint.webp" data-cap="Blueprint — technical drawing with grid and coordinate ticks"><img src="img/blueprint-sm.webp" width="560" height="733" loading="lazy" decoding="async" alt="Blueprint style"><span><b>Blueprint</b>Technical drawing</span></a></li>
+      <li class="reveal"><a href="img/watercolor.webp" data-cap="Watercolor Sky — painterly washes and a pastel palette"><img src="img/watercolor-sm.webp" width="560" height="747" loading="lazy" decoding="async" alt="Watercolor Sky style"><span><b>Watercolor Sky</b>Soft painterly washes</span></a></li>
+      <li class="reveal"><a href="img/cinematic.webp" data-cap="Cinematic — film-like grade and an elegant title card"><img src="img/cinematic-sm.webp" width="560" height="896" loading="lazy" decoding="async" alt="Cinematic style"><span><b>Cinematic</b>Film-like title card</span></a></li>
+      <li class="reveal"><a href="img/poster.webp" data-cap="Stardust Poster — a framed print with title, legend and mini sky chart"><img src="img/poster-sm.webp" width="560" height="887" loading="lazy" decoding="async" alt="Stardust Poster style"><span><b>Stardust Poster</b>Framed print</span></a></li>
+      <li class="reveal g-wide"><a href="img/educational.webp" data-cap="Clean Educational — high-contrast, colour-coded labels"><img src="img/educational.webp" width="1350" height="1800" loading="lazy" decoding="async" alt="Clean Educational style"><span><b>Clean Educational</b>Made for learning</span></a></li>
     </ul>
   </div>
 </section>
@@ -303,10 +314,11 @@
 
 <!-- FAQ -->
 <section class="sec" id="faq">
-  <div class="wrap wrap--narrow">
-    <header class="sec__head reveal">
+  <div class="wrap faqgrid">
+    <header class="sec__head sec__head--stack reveal">
       <p class="eyebrow">FAQ</p>
       <h2>Questions, <em>answered.</em></h2>
+      <p class="sub">The short answers.</p>
     </header>
     <div class="faq reveal">
       <details><summary>Windows says "unknown publisher". Is it safe?</summary><div class="ans"><p>StarGuide is a new independent app and is not code-signed yet, so Windows SmartScreen shows a warning. Click <b>More info</b>, then <b>Run anyway</b>.</p></div></details>
@@ -339,6 +351,7 @@
 
 <dialog class="lb" id="lb" aria-label="Image viewer">
   <button class="lb__x" type="button" aria-label="Close">×</button>
+  <button class="lb__zoom" type="button">Zoom</button>
   <button class="lb__nav lb__prev" type="button" aria-label="Previous style">‹</button>
   <figure><img id="lbImg" alt=""><figcaption id="lbCap"></figcaption></figure>
   <button class="lb__nav lb__next" type="button" aria-label="Next style">›</button>

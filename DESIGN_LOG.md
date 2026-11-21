@@ -71,3 +71,18 @@ Checked 360 / 768 / 1280 / 1920: no horizontal scroll, no console errors. Reduce
 - Screenshot text is small on phones (no zoom/pan yet).
 - The constellation shapes are hand-approximated, not catalogue-exact.
 - No real-device (iOS/Android) testing.
+
+## Round 21: app screenshots without editing
+Critique: the screenshots showed Auto-enhance on, which contradicts "photo stays as shot".
+Changed: re-captured both windows from a copy of the photo with editing off (natural look; style thumbnails now show the real photo too); file name blanked. Tap or click opens a lightbox with a Zoom/Fit toggle (full 2561 px images) so UI text is readable on phones. Enhance crop recaptured (switch off, 0%).
+
+## Round 22: break the formula
+Critique: every section was a centred heading over a grid.
+Changed: numbers row of true facts (8 styles, 961 stars matched in the example, 6 export routes, 0 accounts) with count-up; one full-bleed statement band ("Your sky, named. Your photos stay yours."); editorial split headings for How it works, Features and Styles; FAQ as sticky heading plus list; bento gallery (Atlas large, Educational wide).
+
+## Round 23: constellation behind text
+Critique: Scorpius ran through the headline.
+Changed: canvas clips out the hero copy block (with padding), so lines pass behind the text instead of through it; soft cursor glow follows the pointer.
+
+## Round 24: polish and robustness
+Changed: shimmer placeholders and fade-in for lazy images, press states on buttons/chips/tabs, lining numerals (Cormorant re-subset with lnum), CSS reduced-motion rules for the new pieces, minimum slider height on very short windows, width/height on all hero images, copy tightened. Audit: 0 external requests, 27 requests (about 616 KB including idle prefetch of the 8 full-size style images; about 280 KB before it), no duplicate ids, no heading level skips, one main/nav/footer landmark, every button and link named.

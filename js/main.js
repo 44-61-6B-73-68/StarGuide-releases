@@ -3,12 +3,30 @@
 var $=function(s,c){return (c||document).querySelector(s)},$$=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))};
 var reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+/* lazy images: fade in when loaded */
+$$("img[loading=lazy]").forEach(function(im){
+  function ok(){im.classList.add("is-loaded")}
+  if(im.complete&&im.naturalWidth)ok();else{im.addEventListener("load",ok);im.addEventListener("error",ok)}
+});
+setTimeout(function(){$$("img[loading=lazy]:not(.is-loaded)").forEach(function(im){if(im.complete)im.classList.add("is-loaded")})},4000);
+
+/* numbers count up once, when they scroll into view */
+(function(){
+  var els=$$(".facts b[data-n]");if(!els.length||!("IntersectionObserver" in window))return;
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){
+    if(!e.isIntersecting)return;io.unobserve(e.target);
+    var el=e.target,to=+el.dataset.n;if(reduce||to<2){el.textContent=to;return}
+    var t0=null;requestAnimationFrame(function f(t){if(t0===null)t0=t;var k=Math.min(1,(t-t0)/1300);el.textContent=Math.round(to*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(f)});
+  })},{threshold:.6});els.forEach(function(el){io.observe(el)});
+})();
+
 /* nav stuck + scroll progress + active section */
 var nav=$("#nav"),bar=$("#progress");
 function onScroll(){
   var y=window.scrollY,h=document.documentElement.scrollHeight-window.innerHeight;
   nav.classList.toggle("is-stuck",y>12);
   bar.style.transform="scaleX("+(h>0?Math.min(1,y/h):0)+")";
+  var sb=$(".statement__bg");if(sb&&!reduce){var r0=sb.parentElement.getBoundingClientRect();sb.style.setProperty("--py",((r0.top+r0.height/2-window.innerHeight/2)*-.12).toFixed(1)+"px")}
   var s=$("#steps");
   if(s){$$(".step",s).forEach(function(el){
     var r=el.getBoundingClientRect(),p=(window.innerHeight*.85-r.top)/(r.height*.9);
@@ -192,15 +210,26 @@ $$(".faq details").forEach(function(d){
   });
 });
 
-/* ---------- lightbox ---------- */
+/* ---------- lightbox (gallery + app screenshots, zoomable) ---------- */
 (function(){
   var dlg=$("#lb");if(!dlg||!dlg.showModal)return;
-  var items=$$(".gallery a"),img=$("#lbImg"),cap=$("#lbCap"),i=0,opener=null;
+  var img=$("#lbImg"),cap=$("#lbCap"),fig=$("figure",dlg),list=[],i=0,opener=null,zb=$(".lb__zoom",dlg);
   function load(n){
-    i=(n+items.length)%items.length;var a=items[i];
-    img.src=a.getAttribute("href");img.alt=$("img",a).alt+" style, full size";cap.textContent=a.dataset.cap||"";
+    i=(n+list.length)%list.length;var it=list[i];
+    fig.classList.remove("zoomed");zb.textContent="Zoom";
+    img.src=it.src;img.alt=it.alt;cap.textContent=it.cap||"";
+    $(".lb__prev",dlg).hidden=$(".lb__next",dlg).hidden=list.length<2;
   }
-  items.forEach(function(a,n){a.addEventListener("click",function(e){e.preventDefault();opener=a;load(n);dlg.showModal();$(".lb__x",dlg).focus()})});
+  function open(l,n,from){list=l;opener=from||null;load(n);dlg.showModal();$(".lb__x",dlg).focus()}
+  var g=$$(".gallery a"),gl=g.map(function(a){return{src:a.getAttribute("href"),alt:$("img",a).alt+" style, full size",cap:a.dataset.cap}});
+  g.forEach(function(a,n){a.addEventListener("click",function(e){e.preventDefault();open(gl,n,a)})});
+  var frame=$("#appframe"),open2=$("#appopen"),shotImgs=$$(".appshot__img");
+  var al=[{src:"img/app-neon-full.webp",alt:"The StarGuide window with glowing neon constellation lines over the photo, full size",cap:"Neon Constellations in the StarGuide window"},{src:"img/app-atlas-full.webp",alt:"The StarGuide window with the Celestial Atlas style over the photo, full size",cap:"Celestial Atlas in the StarGuide window"}];
+  function cur(){return shotImgs[1]&&shotImgs[1].classList.contains("is-on")?1:0}
+  if(frame)frame.addEventListener("click",function(){open(al,cur(),frame)});
+  if(open2)open2.addEventListener("click",function(){open(al,cur(),open2)});
+  function zoom(){var z=fig.classList.toggle("zoomed");zb.textContent=z?"Fit":"Zoom";if(z){fig.scrollTo(0,0)}}
+  zb.addEventListener("click",zoom);img.addEventListener("click",zoom);
   $(".lb__x",dlg).addEventListener("click",function(){dlg.close()});
   $(".lb__prev",dlg).addEventListener("click",function(){load(i-1)});
   $(".lb__next",dlg).addEventListener("click",function(){load(i+1)});
@@ -230,7 +259,10 @@ $$(".faq details").forEach(function(d){
     {name:"Sagittarius",lx:.17,ly:.3,n:[[.38,.46],[.30,.36],[.20,.34],[.15,.45],[.22,.57],[.31,.61],[.30,.48]],e:[[0,1],[1,2],[2,3],[3,4],[4,5],[5,0],[1,6],[6,5],[6,4],[6,0]]},
     {name:"Ophiuchus",lx:.3,ly:.02,n:[[.40,.10],[.46,.16],[.52,.12],[.47,.26],[.44,.36]],e:[[0,1],[1,2],[1,3],[3,4]]}
   ];
-  var cons=[],i;
+  var cons=[],i,mask=null;
+  function calcMask(){var c=$(".hero__copy");if(!c){mask=null;return}var r=c.getBoundingClientRect(),h=cv.getBoundingClientRect();var dy=0;mask={x:r.left-h.left-20,y:r.top-h.top-16,w:r.width+40,h:r.height+32}}
+  function clipMask(){if(!mask)return;ctx.save();ctx.beginPath();ctx.rect(0,0,W,H);ctx.rect(mask.x,mask.y,mask.w,mask.h);ctx.clip("evenodd")}
+  function unclip(){if(mask)ctx.restore()}
   function build(){
     var wide=W>H*1.3,s=wide?Math.min(W*.6,H*.9):Math.min(W*1.1,H*.8),ox=wide?W*.03-.12*s:(W-s)/2,oy=wide?H*.09:(H-s)/2;
     cons=shapes.map(function(sh,ci){
@@ -256,6 +288,7 @@ $$(".faq details").forEach(function(d){
       ctx.fillStyle="rgba("+s.c+","+(s.a*tw).toFixed(3)+")";ctx.beginPath();ctx.arc(x,y,s.r,0,6.283);ctx.fill();
     }
     var R=150;
+    clipMask();
     cons.forEach(function(c,ci){
       /* idle pulse: every few seconds one constellation draws itself, so touch screens see it too */
       if(c.next===undefined)c.next=2.5+ci*3.5;
@@ -285,6 +318,7 @@ $$(".faq details").forEach(function(d){
       });
       if(c.glow>.03){ctx.font="italic 500 "+Math.round(Math.min(26,Math.max(15,W/60)))+"px 'Cormorant Garamond',serif";ctx.fillStyle="rgba(232,203,146,"+(c.glow*.75).toFixed(3)+")";ctx.fillText(c.name,c.lx+ox,c.ly+oy)}
     });
+    unclip();
     if(mx>-1000){var hg=ctx.createRadialGradient(mx,my,0,mx,my,70);hg.addColorStop(0,"rgba(138,223,255,.10)");hg.addColorStop(1,"rgba(138,223,255,0)");ctx.fillStyle=hg;ctx.beginPath();ctx.arc(mx,my,70,0,6.283);ctx.fill()}
     requestAnimationFrame(frame);
   }
@@ -293,17 +327,20 @@ $$(".faq details").forEach(function(d){
   function frameStatic(){
     ctx.clearRect(0,0,W,H);
     bg.forEach(function(s){ctx.fillStyle="rgba("+s.c+","+s.a.toFixed(2)+")";ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,6.283);ctx.fill()});
+    clipMask();
     cons.forEach(function(c){
       ctx.strokeStyle="rgba(232,203,146,.28)";ctx.lineWidth=1;
       c.edges.forEach(function(e){var A=c.nodes[e.a],B=c.nodes[e.b];ctx.beginPath();ctx.moveTo(A.x,A.y);ctx.lineTo(B.x,B.y);ctx.stroke()});
       c.nodes.forEach(function(n){ctx.fillStyle="rgba(255,255,255,.85)";ctx.beginPath();ctx.arc(n.x,n.y,n.r,0,6.283);ctx.fill()});
     });
+    unclip();
   }
-  size();
+  size();calcMask();setTimeout(function(){calcMask();if(reduce)frameStatic()},1500);
   if(reduce)frameStatic();
-  var rt;window.addEventListener("resize",function(){clearTimeout(rt);rt=setTimeout(function(){size();if(reduce)frameStatic()},150)});
+  var rt;window.addEventListener("resize",function(){clearTimeout(rt);rt=setTimeout(function(){size();calcMask();if(reduce)frameStatic()},150)});
   var hero=cv.parentElement;
-  hero.addEventListener("pointermove",function(e){var r=cv.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top;tx=(mx/W-.5)*-1;ty=(my/H-.5)*-1});
+  var glowEl=$("#glow"),gt=false;
+  hero.addEventListener("pointermove",function(e){var r=cv.getBoundingClientRect();if(glowEl&&!gt){gt=true;var gx=e.clientX-r.left,gy=e.clientY-r.top;requestAnimationFrame(function(){glowEl.style.setProperty("--hx",gx+"px");glowEl.style.setProperty("--hy",gy+"px");gt=false})}mx=e.clientX-r.left;my=e.clientY-r.top;tx=(mx/W-.5)*-1;ty=(my/H-.5)*-1});
   hero.addEventListener("pointerleave",function(){mx=my=-1e4;tx=ty=0});
   if("IntersectionObserver" in window)new IntersectionObserver(function(es){vis=es[0].isIntersecting;vis?start():stop()}).observe(hero);
   document.addEventListener("visibilitychange",function(){document.hidden?stop():start()});
