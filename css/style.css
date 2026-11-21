@@ -181,6 +181,7 @@ img[loading=lazy]{background:linear-gradient(110deg,#0a0e1b 30%,#131a31 50%,#0a0
 @keyframes shimmer{to{background-position:-200% 0}}
 .statement__bg.is-loaded{opacity:.32!important}
 .appshot__img.is-on.is-loaded{opacity:1}
+.js .appshot__img.is-loaded:not(.is-on){opacity:0}
 .chip--ghost{background:transparent;border-style:dashed}
 .appshot__frame{cursor:zoom-in}
 
