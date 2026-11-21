@@ -56,3 +56,18 @@ Changed: "Your photo" side is now a brightened preview (glow subtracted, gentle 
 ## Round 12: real app screenshots, poster/cinematic, fonts
 Critique: no proof of the actual interface; Poster and Cinematic missing from the slider; fonts heavy; mobile nav dead without JS.
 Changed: new "Inside the app" section with two real StarGuide window screenshots (Neon / Atlas; file name blanked, caption notes Auto-enhance is on). Cinematic and Poster join the slider as contained cards on a matching background. Fonts subset to Latin and converted to WOFF (about 430 KB to 120 KB; no brotli available for woff2). Slider glow colour now eases between styles (registered CSS properties). No-JS mobile nav shows the links as a second row.
+
+## Rounds 13-14: rhythm, micro-interactions, real UI crops
+Critique: sections were visually identical blocks; buttons and nav felt static; the "Improves the photo" tab used a made-up toggle graphic.
+Changed: star-studded hairline between sections, nav underline on hover, sheen sweep on gold buttons, balanced paragraph wrapping. The Improve tab now shows a real crop of the app's Enhance panel (its own text says the photo is left as is unless you ask).
+
+## Rounds 15-20: verification sweep
+Checked 360 / 768 / 1280 / 1920: no horizontal scroll, no console errors. Reduced motion exercised by stubbing matchMedia in a throwaway page (slider starts at 50%, constellations drawn static, no animation loop); CSS reduced-motion rules reviewed but not browser-emulated. No-JS look checked by forcing the class: nav links become a scrollable second row, all feature panels show. Mobile: left/right slider tags no longer collide, chips tightened.
+
+## Remaining weaknesses
+- No woff2 (brotli not available); WOFF subset is about 120 KB total.
+- Slider "before" is a processed preview of the TIFF, not the raw file; it is labelled and the toggle shows the real dark one.
+- App screenshots show Auto-enhance on (grey, flat photo); a hand-graded example would look richer.
+- Screenshot text is small on phones (no zoom/pan yet).
+- The constellation shapes are hand-approximated, not catalogue-exact.
+- No real-device (iOS/Android) testing.
