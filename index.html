@@ -67,6 +67,7 @@
         </div>
         <span class="cmp__tag cmp__tag--l">Your photo</span>
         <span class="cmp__tag cmp__tag--r" id="tagR">Celestial Atlas</span>
+        <span class="cmp__hint" aria-hidden="true">Drag to compare</span>
         <div class="cmp__handle" id="handle" role="slider" tabindex="0" aria-label="Compare your photo with the StarGuide result" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-valuetext="50% your photo">
           <span class="cmp__grip"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         </div>
@@ -79,7 +80,7 @@
         <button type="button" class="chip" data-style="watercolor" aria-pressed="false">Watercolor</button>
         <button type="button" class="chip" data-style="educational" aria-pressed="false">Educational</button>
       </div>
-      <p class="caption">Drag, or use the arrow keys. A phone photo of Sagittarius and Scorpius.</p>
+      <p class="caption">961 stars matched in this phone photo of Sagittarius and Scorpius.</p>
     </div>
   </div>
   <a class="scrollcue" href="#how" aria-label="Scroll to how it works"><i></i></a>
@@ -176,19 +177,35 @@
           <ul class="ticks"><li>Atlas, Neon, Ink, Blueprint and more</li><li>Full control of colour, type and lines</li><li>Print-ready poster layouts</li></ul></div>
         </div>
         <div class="panel" role="tabpanel" id="p-fix" aria-labelledby="t-fix" tabindex="0" hidden>
-          <div class="chipcloud" aria-hidden="true"><span>Clean-up</span><span>Stretch</span><span>Colour calibration</span><span>Detail tools</span><span>Gradient removal</span></div>
+          <div class="viz viz--toggles" aria-hidden="true">
+            <div class="tg"><span>Clean-up</span><i></i></div>
+            <div class="tg"><span>Stretch</span><i></i></div>
+            <div class="tg"><span>Colour calibration</span><i></i></div>
+            <div class="tg"><span>Detail tools</span><i></i></div>
+            <small>All off until you switch them on</small>
+          </div>
           <div><h3>Your photo stays as shot, unless you choose</h3>
           <p>Optional clean-up, stretch, colour calibration and detail tools are there when you want them. Nothing is applied behind your back.</p>
-          <ul class="ticks"><li>Opt-in, never automatic</li><li>Compare against the original</li><li>Non-destructive</li></ul></div>
+          <ul class="ticks"><li>Opt-in, never automatic</li><li>Clean-up and stretch when you want them</li><li>Colour calibration and detail tools</li></ul></div>
         </div>
         <div class="panel" role="tabpanel" id="p-stack" aria-labelledby="t-stack" tabindex="0" hidden>
-          <div class="chipcloud" aria-hidden="true"><span>Exposure stacking</span><span>Batch a folder</span><span>Same style, every photo</span></div>
+          <div class="viz viz--stack" aria-hidden="true">
+            <div class="pile"><img src="img/original-sm.webp" alt="" width="560" height="747"><img src="img/original-sm.webp" alt="" width="560" height="747"><img src="img/original-sm.webp" alt="" width="560" height="747"></div>
+            <div class="files"><span>IMG_0001</span><span>IMG_0002</span><span>IMG_0003</span><span class="more">+ a whole folder</span></div>
+          </div>
           <div><h3>More frames, cleaner sky</h3>
           <p>Combine several exposures for less noise, or point StarGuide at a whole folder and process every photo in one go.</p>
-          <ul class="ticks"><li>Stack exposures of the same sky</li><li>Batch-process an entire folder</li><li>Reuse a style across a trip</li></ul></div>
+          <ul class="ticks"><li>Stack exposures of the same sky</li><li>Batch-process an entire folder</li><li>One go, start to finish</li></ul></div>
         </div>
         <div class="panel" role="tabpanel" id="p-export" aria-labelledby="t-export" tabindex="0" hidden>
-          <div class="chipcloud chipcloud--fmt" aria-hidden="true"><span>PNG</span><span>JPG</span><span>16-bit TIFF</span><span>SVG</span><span>PDF</span><span>Layers</span></div>
+          <div class="viz viz--fmt" aria-hidden="true">
+            <div class="file"><b>PNG</b><small>Lossless</small></div>
+            <div class="file"><b>JPG</b><small>Small and shareable</small></div>
+            <div class="file"><b>TIFF</b><small>16-bit for editing</small></div>
+            <div class="file"><b>SVG</b><small>Scalable vector</small></div>
+            <div class="file"><b>PDF</b><small>Print-ready</small></div>
+            <div class="file"><b>Layers</b><small>Finish in your editor</small></div>
+          </div>
           <div><h3>Ready for the wall, the web or your editor</h3>
           <p>Export a flat image, a 16-bit TIFF for serious editing, scalable SVG, a print-ready PDF, or separate layers to finish in your own editor.</p>
           <ul class="ticks"><li>Print-ready PDF and vector SVG</li><li>16-bit TIFF for editing</li><li>Layered output</li></ul></div>

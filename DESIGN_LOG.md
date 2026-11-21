@@ -9,3 +9,11 @@ Changed: full rewrite. Design tokens (colour, radius, spacing, shadow, easing), 
 ## Round 2: mobile + trust
 Critique: on a phone the hero slider sat far below the fold and the nav links vanished entirely.
 Changed: mobile menu (burger, Esc to close), trust strip (offline / photos stay put / no account / free) replacing hero pills, compact mobile hero and side-by-side CTAs.
+
+## Round 3: hero scale + interaction test
+Critique: the hero visual was undersized next to a big headline; the "drag" hint cost vertical space. Tested drag, chips crossfade, tabs (arrow keys), FAQ, lightbox (arrows): all work.
+Changed: slider now up to 70vh tall, "Drag to compare" pill lives inside it and fades on first touch, caption now states a real fact (961 stars matched in this photo), subtle mouse-only 3D tilt on the slider.
+
+## Round 4: feature panels with substance
+Critique: three of six feature tabs were just chip clouds; looked placeholder-ish. Also two ticks claimed things I could not verify.
+Changed: opt-in toggle visual (all off), exposure-pile + filenames visual, export "file tiles". Removed unverifiable claims from copy.

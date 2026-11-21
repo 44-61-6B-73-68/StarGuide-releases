@@ -80,6 +80,15 @@ $$(".step,.install").forEach(function(c){
     else if(k==="Home")v=0;else if(k==="End")v=100;
     if(v!==null){e.preventDefault();stopAuto();set(v)}
   });
+  /* gentle 3D tilt (mouse only) */
+  var stage=$("#stage");
+  if(!reduce&&stage&&window.matchMedia("(hover:hover) and (pointer:fine)").matches){
+    stage.addEventListener("pointermove",function(e){
+      if(dragging)return;var r=stage.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+      cmp.style.transform="perspective(1100px) rotateY("+(x*5).toFixed(2)+"deg) rotateX("+(-y*4).toFixed(2)+"deg)";
+    });
+    stage.addEventListener("pointerleave",function(){cmp.style.transform=""});
+  }
   /* style switching with crossfade */
   var front=A,back=B,loaded={atlas:1};
   function show(id){
@@ -98,7 +107,7 @@ $$(".step,.install").forEach(function(c){
   idle(function(){Object.keys(names).forEach(function(k){if(k!=="atlas"){var i=new Image();i.src="img/"+k+".webp"}})});
   /* gentle intro sweep, cancelled by any interaction */
   var auto=null;
-  function stopAuto(){if(auto){cancelAnimationFrame(auto);auto=null}}
+  function stopAuto(){cmp.classList.add("is-touched");if(auto){cancelAnimationFrame(auto);auto=null}}
   if(!reduce){
     set(100);var t0=null;
     var from=100,to=50,dur=1900;
